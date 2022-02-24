@@ -89,7 +89,8 @@ We have installed the following Beats on these machines:
 - FileBeats and MetricBeats have been installed
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Filebeat reads and forwards log lines and — if interrupted — remembers the location of where it left off when everything is back online
+- Metricbeat gets system-level CPU usage, memory, file system, disk IO, and network IO statistics, as well as top-like statistics for every process running on your systems.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -99,11 +100,12 @@ SSH into the control node and follow the steps below:
 - Update the ansible hosts file to include the ip address of the elk server
 - Run the playbook, and navigate to curl http://10.0.0.4:5601/app/kibana to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+- The playbook file is a yaml file that contains the configuration instructions for the service. It is typically found in /etc/ansible
+- Which file do you update to make Ansible run the playbook on a specific machine? You would update the Ansible hosts file. You modify the hosts file by adding an ELK Stack server group which includes the IPs of the servers.
+- Which URL do you navigate to in order to check that the ELK server is running? curl http://10.0.0.4:5601/app/kibana
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
 
-  [1]: Scripts/ansible/filebeat-playbook.yml
+  1. curl is used to download the playbooks
+  2. ansible-playbook <Name of the playbook> Runs the playbook
+  3. nano or vi is used to edit the playbooks.
